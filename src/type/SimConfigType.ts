@@ -2,7 +2,7 @@
  * @Author: “Liwwwwwwx” hbsd_lwx@163.com
  * @Date: 2023-09-27 15:54:32
  * @LastEditors: “Liwwwwwwx” hbsd_lwx@163.com
- * @LastEditTime: 2023-09-27 16:17:09
+ * @LastEditTime: 2023-09-27 16:17:46
  * @FilePath: /vue-project/src/type/SimConfigType.ts
  * @Description: 仿真配置信息类型
  */
