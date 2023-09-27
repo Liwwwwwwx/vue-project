@@ -2,7 +2,7 @@
  * @Author: “Liwwwwwwx” hbsd_lwx@163.com
  * @Date: 2023-09-27 14:49:40
  * @LastEditors: “Liwwwwwwx” hbsd_lwx@163.com
- * @LastEditTime: 2023-09-27 17:07:58
+ * @LastEditTime: 2023-09-27 17:11:00
  * @FilePath: /vue-project/src/stores/SimConfig.ts
  * @Description: 仿真配置
  */
@@ -340,6 +340,8 @@ export const useSimConfigStore = defineStore("SimConfig", () => {
     changeEquipmentParameters,
     hav_assign_mode,
     changeHavAssignMode,
-    setHavAssignModeShipNameList
+    setHavAssignModeShipNameList,
+    outtruck_appointments,
+    equipment_parameters,
   }
 });
