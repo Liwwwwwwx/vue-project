@@ -1,0 +1,44 @@
+:root {
+  --bg-normal-color: #609fff;
+  --checkbox-border-color: #747474;
+  --text-color: #ffffff;
+  --text-hover-background-color: #595a5f;
+  --checkbox-background-color: #42444a;
+  --scrollbar-color: #35373f;
+  --table-bg-color: rgba(120, 155, 218, 0.5);
+  --input-bg-color: var(--text-hover-background-color);
+}
+* {
+  touch-action: none;
+}
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+  font-family: "Alibaba PuHuiTi";
+}
+#app {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  -webkit-user-select: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+p {
+  margin: 0;
+  padding: 0;
+}
+.scrollbar_container::-webkit-scrollbar {
+  width: 0.25rem;
+}
+.scrollbar_container::-webkit-scrollbar-thumb {
+  background-color: var(--scrollbar-color);
+  border-radius: 0.25rem;
+}
