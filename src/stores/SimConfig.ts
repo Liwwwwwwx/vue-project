@@ -2,7 +2,7 @@
  * @Author: “Liwwwwwwx” hbsd_lwx@163.com
  * @Date: 2023-09-27 14:49:40
  * @LastEditors: “Liwwwwwwx” hbsd_lwx@163.com
- * @LastEditTime: 2023-09-27 17:37:29
+ * @LastEditTime: 2023-10-02 18:51:00
  * @FilePath: /vue-project/src/stores/SimConfig.ts
  * @Description: 仿真配置
  */
@@ -21,6 +21,14 @@ export const useSimConfigStore = defineStore("SimConfig", () => {
    */  
   function setSimShipExcelData(value:any):void {
     simShipExcelData.value = value
+  }
+
+  /**
+   * @description: 获取excel数据
+   * @return {*}
+   */  
+  function getSimShipExcelData():any {
+    return simShipExcelData
   }
 
   // 是否显示仿真配置窗口
@@ -336,6 +344,7 @@ export const useSimConfigStore = defineStore("SimConfig", () => {
     simId,
     simShipExcelData,
     setSimShipExcelData,
+    getSimShipExcelData,
     isShowSimConfig,
     switches,
     blocks,

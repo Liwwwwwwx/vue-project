@@ -2,12 +2,38 @@
  * @Author: “Liwwwwwwx” hbsd_lwx@163.com
  * @Date: 2023-09-15 17:54:58
  * @LastEditors: “Liwwwwwwx” hbsd_lwx@163.com
- * @LastEditTime: 2023-09-27 17:46:33
+ * @LastEditTime: 2023-10-02 18:49:22
  * @FilePath: /vue-project/src/tools/index.ts
  * @Description: 通用方法
  */
 
 import { divStyle, DateType } from "@/type";
+import * as xlsx from "xlsx";
+import { ElMessage } from 'element-plus';
+
+
+export function readExcel(files: any,callback:Function): any {
+  if(!files) {
+    return false;
+  } else if( !/\.(xls|xlsx|csv)$/.test(files[0].name.toLowerCase()) ) {
+    ElMessage({
+      message: '文件格式不正确',
+      type: 'error'
+    })
+  }
+  console.log(files);
+  const fileReader = new FileReader();
+  fileReader.readAsBinaryString(files[0]);
+  fileReader.onload = (e:any) => {
+    const data = e.target.result;
+    const excel = xlsx.read(data, {
+      type: 'binary'
+    });
+    const excelName = excel.SheetNames[0];
+    const excelDatas = xlsx.utils.sheet_to_json(excel.Sheets[excelName]);
+    callback(excelDatas)
+  }
+}
 
 /**
  * @description: 鼠标点击拖拽函数
@@ -359,19 +385,19 @@ export function getNowDateFromPercents(percent: number): any {
 
   let day = Math.floor(dayCount * percent / 100);
   for (let i = 0; i < monthList.length; i++) {
-    if(day - monthList[i] >= 0) {
+    if (day - monthList[i] >= 0) {
       day -= monthList[i];
     } else {
       month = i + 1
       break;
     }
   }
-  if(month == undefined) {
+  if (month == undefined) {
     month = 12;
     day = 30;
   }
   day++
-  return { year, month, day}
+  return { year, month, day }
 }
 
 /**
