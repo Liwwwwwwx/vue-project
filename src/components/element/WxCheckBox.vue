@@ -2,7 +2,7 @@
  * @Author: “Liwwwwwwx” 1076843408@qq.com
  * @Date: 2023-09-15 17:09:37
  * @LastEditors: “Liwwwwwwx” hbsd_lwx@163.com
- * @LastEditTime: 2023-09-21 14:39:28
+ * @LastEditTime: 2023-10-02 20:56:03
  * @FilePath: /vue-project/src/components/element/WxCheckBox.vue
  * @Description: 多选框二次封装
 -->
@@ -35,7 +35,7 @@ const data = ref([]);
  * @description: 传递数据给父组件
  * @return {*}
  */
-function exportCheckedData() {
+function exportCheckedData(): void {
   emit("exportCheckedData", data.value);
 }
 </script>
@@ -64,4 +64,5 @@ function exportCheckedData() {
     flex-direction: column;
   }
 }
+
 </style>

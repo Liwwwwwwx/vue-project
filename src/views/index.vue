@@ -2,7 +2,7 @@
  * @Author: “Liwwwwwwx” 1076843408@qq.com
  * @Date: 2023-09-15 10:41:18
  * @LastEditors: “Liwwwwwwx” hbsd_lwx@163.com
- * @LastEditTime: 2023-10-02 19:10:18
+ * @LastEditTime: 2023-10-02 19:30:02
  * @FilePath: /vue-project/src/views/index.vue
  * @Description: 布局
 -->
@@ -10,12 +10,19 @@
   <div class="base_container">
     <div class="container">
       <SimReadExcel></SimReadExcel>
+      <WxTransfer></WxTransfer>
+      <WxCheckBox :options="testOptions" direction="row"></WxCheckBox>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
 import SimReadExcel from "@/components/SimConfig/SimReadExcel.vue";
+import WxCheckBox from "@/components/element/WxCheckBox.vue";
+import WxTransfer from "@/components/element/WxTransfer.vue";
+import { generatorDefaultOptions } from "@/tools";
+
+const testOptions = generatorDefaultOptions(10)
 </script>
 
 <style scoped lang="scss">

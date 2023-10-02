@@ -2,12 +2,12 @@
  * @Author: “Liwwwwwwx” hbsd_lwx@163.com
  * @Date: 2023-09-15 17:54:58
  * @LastEditors: “Liwwwwwwx” hbsd_lwx@163.com
- * @LastEditTime: 2023-10-02 18:49:22
+ * @LastEditTime: 2023-10-02 20:58:38
  * @FilePath: /vue-project/src/tools/index.ts
  * @Description: 通用方法
  */
 
-import { divStyle, DateType } from "@/type";
+import { divStyle, DateType,OptionsType } from "@/type";
 import * as xlsx from "xlsx";
 import { ElMessage } from 'element-plus';
 
@@ -427,5 +427,26 @@ export function getNowTimeFromPercents(percents: number): any {
   return { hour, minute, second: 0 }
 }
 
+/**
+ * @description: options测试数据
+ * @param {number} length
+ * @return {*}
+ */
+export function generatorDefaultOptions(length: number): OptionsType[] { 
+  let tempObj: OptionsType = {
+    label: "",
+    value: "",
+  }
+  let result: OptionsType[] = []
+  for (let i = 1; i <= length; i++) {
+    let tempObj: OptionsType = {
+      label: String(i),
+      value: String(i),
+    }
+    result.push(tempObj)
+  }
+  console.log(result);
+  return result;
+}
 
 

@@ -2,7 +2,7 @@
  * @Author: “Liwwwwwwx” hbsd_lwx@163.com
  * @Date: 2023-08-24 11:48:32
  * @LastEditors: “Liwwwwwwx” hbsd_lwx@163.com
- * @LastEditTime: 2023-09-27 10:02:24
+ * @LastEditTime: 2023-10-02 19:32:50
  * @FilePath: /vue-project/src/type/index.ts
  * @Description: 数据类型
  */
@@ -60,11 +60,17 @@ declare interface DateType {
   second: number,
 }
 
+declare interface OptionsType {
+  label: string,
+  value: string
+}
+
 export {
   socket,
   exportContainerType,
   transitContainerType,
   importContainerType,
   divStyle,
-  DateType
+  DateType,
+  OptionsType
 };

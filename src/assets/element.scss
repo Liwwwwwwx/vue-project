@@ -2,39 +2,41 @@
  * @Author: “Liwwwwwwx” hbsd_lwx@163.com
  * @Date: 2023-09-21 14:51:14
  * @LastEditors: “Liwwwwwwx” hbsd_lwx@163.com
- * @LastEditTime: 2023-09-26 10:13:23
+ * @LastEditTime: 2023-10-02 21:01:25
  * @FilePath: /vue-project/src/assets/element.scss
  * @Description: element组件样式
  */
 
 /* 多选框样式 */
-.el-checkbox-group {
-  .el-checkbox__inner {
-    width: 32px;
-    height: 32px;
-    background-color: var(--checkbox-background-color);
-    border: 2px solid var(--checkbox-border-color);
-  }
-  .el-checkbox__inner:hover {
-    border: none;
-  }
-  .el-checkbox__label {
-    color: var(--text-color);
-    font-size: 30px;
-    padding-left: 40px;
-  }
-  .el-checkbox__inner::after {
-    width: 14.5px;
-    height: 21px;
-    border: 2px solid var(--el-checkbox-checked-icon-color);
-    border-left: 0;
-    border-top: 0;
-    left: 6px;
-    top: 0;
-  }
-  .is-checked {
+.wx_checkbox_container{
+  .el-checkbox-group {
     .el-checkbox__inner {
-      background-color: var(--bg-normal-color);
+      width: 32px;
+      height: 32px;
+      background-color: var(--checkbox-background-color);
+      border: 2px solid var(--checkbox-border-color);
+    }
+    .el-checkbox__inner:hover {
+      border: none;
+    }
+    .el-checkbox__label {
+      color: var(--text-color);
+      font-size: 30px;
+      padding-left: 40px;
+    }
+    .el-checkbox__inner::after {
+      width: 14.5px;
+      height: 21px;
+      border: 2px solid var(--el-checkbox-checked-icon-color);
+      border-left: 0;
+      border-top: 0;
+      left: 6px;
+      top: 0;
+    }
+    .is-checked {
+      .el-checkbox__inner {
+        background-color: var(--bg-normal-color);
+      }
     }
   }
 }
