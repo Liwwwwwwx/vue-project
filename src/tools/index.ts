@@ -2,14 +2,12 @@
  * @Author: “Liwwwwwwx” hbsd_lwx@163.com
  * @Date: 2023-09-15 17:54:58
  * @LastEditors: “Liwwwwwwx” hbsd_lwx@163.com
- * @LastEditTime: 2023-09-27 17:19:24
+ * @LastEditTime: 2023-09-27 17:46:33
  * @FilePath: /vue-project/src/tools/index.ts
  * @Description: 通用方法
  */
 
 import { divStyle, DateType } from "@/type";
-import * as xlsx from "xlsx";
-import { ElMessage } from "element-plus"
 
 /**
  * @description: 鼠标点击拖拽函数
@@ -403,31 +401,5 @@ export function getNowTimeFromPercents(percents: number): any {
   return { hour, minute, second: 0 }
 }
 
-/**
- * @description: 读取excel表格内容
- * @param {any} files
- * @return {*}
- */
-export function readExcel(files:any):any {
-  if(!files) {
-    return false;
-  } else if( !/\.(xls|xlsx|csv)$/.test(files[0].name.toLowerCase()) ) {
-    ElMessage({
-      message: '文件格式不正确',
-      type: 'error'
-    })
-  }
 
-  const fileReader = new FileReader();
-  fileReader.readAsBinaryString(files[0]);
-  fileReader.onload = (e:any) => {
-    const data = e.target.result;
-    const excel = xlsx.read(data, {
-      type: 'binary'
-    });
-    const excelName = excel.SheetNames[0];
-    const excelDatas = xlsx.utils.sheet_to_json(excel.Sheets[excelName]);
-    return excelDatas;
-  }
-}
 
