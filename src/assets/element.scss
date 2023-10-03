@@ -2,44 +2,47 @@
  * @Author: “Liwwwwwwx” hbsd_lwx@163.com
  * @Date: 2023-09-21 14:51:14
  * @LastEditors: “Liwwwwwwx” hbsd_lwx@163.com
- * @LastEditTime: 2023-10-02 21:01:25
+ * @LastEditTime: 2023-10-03 11:45:41
  * @FilePath: /vue-project/src/assets/element.scss
  * @Description: element组件样式
  */
 
 /* 多选框样式 */
-.wx_checkbox_container{
-  .el-checkbox-group {
-    .el-checkbox__inner {
-      width: 32px;
-      height: 32px;
-      background-color: var(--checkbox-background-color);
-      border: 2px solid var(--checkbox-border-color);
-    }
-    .el-checkbox__inner:hover {
-      border: none;
-    }
-    .el-checkbox__label {
-      color: var(--text-color);
-      font-size: 30px;
-      padding-left: 40px;
-    }
-    .el-checkbox__inner::after {
-      width: 14.5px;
-      height: 21px;
-      border: 2px solid var(--el-checkbox-checked-icon-color);
-      border-left: 0;
-      border-top: 0;
-      left: 6px;
-      top: 0;
-    }
-    .is-checked {
-      .el-checkbox__inner {
-        background-color: var(--bg-normal-color);
-      }
-    }
+
+.el-checkbox__inner {
+  width: 32px !important;
+  height: 32px !important;
+  background-color: var(--checkbox-background-color) !important;
+  border: 2px solid var(--checkbox-border-color) !important;
+}
+
+.el-checkbox__inner:hover {
+  border: none;
+}
+
+.el-checkbox__label {
+  color: var(--text-color);
+  font-size: 30px;
+  padding-left: 40px;
+}
+
+.el-checkbox__inner::after {
+  width: 14.5px !important;
+  height: 21px !important;
+  border: 2px solid var(--el-checkbox-checked-icon-color) !important;
+  border-left: 0 !important;
+  border-top: 0 !important;
+  left: 6px !important;
+  top: 0 !important;
+}
+
+.is-checked {
+  .el-checkbox__inner {
+    background-color: var(--bg-normal-color) !important;
   }
 }
+
+
 
 /* el-table */
 // 整体背景
@@ -47,6 +50,7 @@
 .el-table tr {
   background-color: transparent !important;
 }
+
 .table_header_cell,
 .table_cell {
   background-color: var(--table-bg-color) !important;
@@ -54,6 +58,7 @@
   border-bottom: none !important;
   font-size: 30px;
 }
+
 .table_header_cell {
   .cell {
     background-color: var(--bg-normal-color);
@@ -65,6 +70,7 @@
     font-size: 40px;
   }
 }
+
 .table_cell {
   .cell {
     height: 60px;
@@ -72,3 +78,12 @@
   }
 }
 
+// input输入框
+.el-input__wrapper {
+  background-color: var(--input-bg-color) !important;
+  box-shadow: none !important;
+}
+
+.el-input__inner {
+  color: var(--text-color) !important;
+}
