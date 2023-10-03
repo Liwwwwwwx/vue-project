@@ -2,7 +2,7 @@
  * @Author: “Liwwwwwwx” hbsd_lwx@163.com
  * @Date: 2023-08-24 11:48:32
  * @LastEditors: “Liwwwwwwx” hbsd_lwx@163.com
- * @LastEditTime: 2023-10-02 19:32:50
+ * @LastEditTime: 2023-10-03 12:49:58
  * @FilePath: /vue-project/src/type/index.ts
  * @Description: 数据类型
  */
@@ -65,6 +65,16 @@ declare interface OptionsType {
   value: string
 }
 
+declare interface TransferOptionsType {
+  key:number,
+  label: string,
+  initial: string
+}
+
+declare interface KeysValuesType {
+  keys: string[];
+  values: string[];
+}
 export {
   socket,
   exportContainerType,
@@ -72,5 +82,7 @@ export {
   importContainerType,
   divStyle,
   DateType,
-  OptionsType
+  OptionsType,
+  TransferOptionsType,
+  KeysValuesType
 };

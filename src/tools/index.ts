@@ -2,12 +2,12 @@
  * @Author: “Liwwwwwwx” hbsd_lwx@163.com
  * @Date: 2023-09-15 17:54:58
  * @LastEditors: “Liwwwwwwx” hbsd_lwx@163.com
- * @LastEditTime: 2023-10-02 20:58:38
+ * @LastEditTime: 2023-10-03 12:56:46
  * @FilePath: /vue-project/src/tools/index.ts
  * @Description: 通用方法
  */
 
-import { divStyle, DateType,OptionsType } from "@/type";
+import { divStyle, DateType,OptionsType,KeysValuesType,TransferOptionsType } from "@/type";
 import * as xlsx from "xlsx";
 import { ElMessage } from 'element-plus';
 
@@ -447,6 +447,36 @@ export function generatorDefaultOptions(length: number): OptionsType[] {
   }
   console.log(result);
   return result;
+}
+
+
+
+/**
+ * @description: 获取对象的key和value
+ * @param {Object} options
+ * @return {KeysValuesType}
+ */
+export function getKeysAndValues(options: Object): KeysValuesType {
+  const keys: string[] = Object.keys(options)
+  const values: string[] = Object.values(options)
+  return { keys, values }
+}
+
+/**
+ * @description: 获取穿梭框数据
+ * @param {string} options
+ * @return {TransferOptionsType[]}
+ */
+export function getTransferOptions(options: string[]):TransferOptionsType[] {
+  const data: TransferOptionsType[] = []
+  options.forEach((option:string, index:number) => {
+    data.push({
+      label: option,
+      key: index,
+      initial: option.substring(0,2),
+    })
+  }) 
+  return data;
 }
 
 

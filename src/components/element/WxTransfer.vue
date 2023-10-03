@@ -2,7 +2,7 @@
  * @Author: “Liwwwwwwx” hbsd_lwx@163.com
  * @Date: 2023-10-02 19:25:18
  * @LastEditors: “Liwwwwwwx” hbsd_lwx@163.com
- * @LastEditTime: 2023-10-03 11:30:18
+ * @LastEditTime: 2023-10-03 12:51:06
  * @FilePath: /vue-project/src/components/element/WxTransfer.vue
  * @Description: 穿梭框
 -->
@@ -13,44 +13,28 @@
     filterable
     :filter-method="filterMethod"
     filter-placeholder="State Abbreviations"
-    :data="data"
+    :titles="['全部数据', '已选数据']"
+    :data="options"
+    @change="transferChange"
   />
   </div>
 </template>
 
 <script lang="ts" setup>
-import { ref } from 'vue'
+import { TransferOptionsType } from "@/type"
 
-interface Option {
-  key: number
-  label: string
-  initial: string
-}
+defineProps({
+  options:{
+    type:Array as PropType<TransferOptionsType[]>
+  }
+})
 
-const generateData = () => {
-  const data: Option[] = []
-  const states = [
-    'California',
-    'Illinois',
-    'Maryland',
-    'Texas',
-    'Florida',
-    'Colorado',
-    'Connecticut ',
-  ]
-  const initials = ['CA', 'IL', 'MD', 'TX', 'FL', 'CO', 'CT']
-  states.forEach((city, index) => {
-    data.push({
-      label: city,
-      key: index,
-      initial: initials[index],
-    })
-  })
-  return data
-}
+const emit = defineEmits(["emitTransferValue"])
 
-const data = ref<Option[]>(generateData())
 const value = ref([])
+function transferChange(value:any) {
+  emit("emitTransferValue",value)
+}
 
 const filterMethod = (query:any, item:any) => {
   return item.initial.toLowerCase().includes(query.toLowerCase())
