@@ -13,3 +13,7 @@ declare module "*.vue" {
 
   export default component;
 }
+
+declare module "pinia";
+declare module "vue-router";
+
