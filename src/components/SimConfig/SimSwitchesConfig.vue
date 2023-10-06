@@ -1,9 +1,9 @@
 <!--
  * @Author: “Liwwwwwwx” hbsd_lwx@163.com
  * @Date: 2023-09-27 14:54:57
- * @LastEditors: “Liwwwwwwx” hbsd_lwx@163.com
- * @LastEditTime: 2023-09-27 17:41:43
- * @FilePath: /vue-project/src/components/SimConfig/SimSwitchesConfig.vue
+ * @LastEditors: Liwwwwwwx 1076843408@qq.com
+ * @LastEditTime: 2023-10-06 18:46:50
+ * @FilePath: \vue-project\src\components\SimConfig\SimSwitchesConfig.vue
  * @Description: 开关配置
 -->
 <template>

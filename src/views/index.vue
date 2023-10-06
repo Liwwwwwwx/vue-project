@@ -1,27 +1,30 @@
 <!--
  * @Author: “Liwwwwwwx” 1076843408@qq.com
  * @Date: 2023-09-15 10:41:18
- * @LastEditors: “Liwwwwwwx” hbsd_lwx@163.com
- * @LastEditTime: 2023-10-03 12:58:55
- * @FilePath: /vue-project/src/views/index.vue
+ * @LastEditors: Liwwwwwwx 1076843408@qq.com
+ * @LastEditTime: 2023-10-06 18:43:09
+ * @FilePath: \vue-project\src\views\index.vue
  * @Description: 布局
 -->
 <template>
   <div class="base_container">
     <div class="container">
       <SimReadExcel></SimReadExcel>
-      <WxTransfer :options="options" @emit-transfer-value="getTransgetValue"></WxTransfer>
-      <WxCheckBox :options="testOptions" direction="row"></WxCheckBox>
-      <WxInputVue title="标题" width="20"></WxInputVue>
+      <wx-transfer :options="options" @emit-transfer-value="getTransgetValue"></wx-transfer>
+      <wx-check-box :options="testOptions" direction="row"></wx-check-box>
+      <wx-input title="标题" width="20"></wx-input>
+      <div-corner></div-corner>
+      
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import SimReadExcel from "@/components/SimConfig/SimReadExcel.vue";
-import WxCheckBox from "@/components/element/WxCheckBox.vue";
-import WxTransfer from "@/components/element/WxTransfer.vue";
-import WxInputVue from "@/components/element/WxInput.vue";
+import SimReadExcel from "@/components/SimConfig/simReadExcel.vue";
+import WxCheckBox from "@/components/element/wxCheckBox.vue";
+import WxTransfer from "@/components/element/wxTransfer.vue";
+import WxInput from "@/components/element/wxInput.vue";
+import divCorner from '@/components/normal/divCorner.vue'
 import { generatorDefaultOptions,getTransferOptions } from "@/tools";
 import { TransferOptionsType } from "@/type";
 
