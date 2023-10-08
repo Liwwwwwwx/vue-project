@@ -2,7 +2,7 @@
  * @Author: “Liwwwwwwx” hbsd_lwx@163.com
  * @Date: 2023-09-27 14:08:20
  * @LastEditors: “Liwwwwwwx” hbsd_lwx@163.com
- * @LastEditTime: 2023-09-27 14:38:44
+ * @LastEditTime: 2023-10-08 10:21:29
  * @FilePath: /vue-project/src/websocket/index.ts
  * @Description: 二次封装websocket
  */
@@ -121,8 +121,6 @@ class WebSocketObj implements socket {
         })
         this.reconnect_current_count++;
       }
-
     }
   }
-
 }

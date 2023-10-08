@@ -2,7 +2,7 @@
  * @Author: “Liwwwwwwx” hbsd_lwx@163.com
  * @Date: 2023-10-02 21:04:52
  * @LastEditors: “Liwwwwwwx” hbsd_lwx@163.com
- * @LastEditTime: 2023-10-02 21:05:42
+ * @LastEditTime: 2023-10-08 18:08:41
  * @FilePath: /vue-project/.postcssrc.js
  * @Description: px转vw
  */

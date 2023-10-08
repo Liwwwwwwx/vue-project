@@ -2,7 +2,7 @@
  * @Author: “Liwwwwwwx” 1076843408@qq.com
  * @Date: 2023-09-15 17:09:37
  * @LastEditors: “Liwwwwwwx” hbsd_lwx@163.com
- * @LastEditTime: 2023-10-02 20:56:03
+ * @LastEditTime: 2023-10-08 16:28:39
  * @FilePath: /vue-project/src/components/element/WxCheckBox.vue
  * @Description: 多选框二次封装
 -->
@@ -14,6 +14,7 @@
       v-model="data"
       class="checkbox_box"
       :class="direction === 'row' ? 'checkbox_row' : 'checkbox_column'"
+      
     >
       <el-checkbox
         class="checkbox_box_item"
