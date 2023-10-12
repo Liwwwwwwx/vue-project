@@ -28,7 +28,10 @@ function loadWebAssembly(path: any, imports: any = {}): any {
 
       if (!imports.env.table) {
         // 在 MVP 版本中 element 只能是 "anyfunc"
-        imports.env.table = new WebAssembly.Table({ initial: 0, element: "anyfunc" });
+        imports.env.table = new WebAssembly.Table({
+          initial: 0,
+          element: "anyfunc",
+        });
       }
       // 创建 WebAssembly 实例
       return new WebAssembly.Instance(module, imports);

@@ -7,7 +7,7 @@
   --scrollbar-color: #35373f;
   --table-bg-color: rgba(120, 155, 218, 0.5);
   --input-bg-color: var(--text-hover-background-color);
-  --card-bg-color:#26272B;
+  --card-bg-color: #26272b;
 }
 * {
   touch-action: none;

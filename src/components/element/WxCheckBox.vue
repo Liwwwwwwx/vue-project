@@ -8,20 +8,22 @@
 -->
 
 <template>
-  <div class="wx_checkbox_container" :class="isScrollbar ? 'scrollbar_container' : ''">
+  <div
+    class="wx_checkbox_container"
+    :class="isScrollbar ? 'scrollbar_container' : ''"
+  >
     <el-checkbox-group
       @change="exportCheckedData"
       v-model="data"
       class="checkbox_box"
       :class="direction === 'row' ? 'checkbox_row' : 'checkbox_column'"
-      
     >
       <el-checkbox
         class="checkbox_box_item"
         v-for="(item, index) in options"
         :label="item.label"
+        :value="item.label"
       >
-        {{ item.value }}
       </el-checkbox>
     </el-checkbox-group>
   </div>
@@ -65,5 +67,4 @@ function exportCheckedData(): void {
     flex-direction: column;
   }
 }
-
 </style>

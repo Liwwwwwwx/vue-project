@@ -7,7 +7,6 @@
  * @Description: 仿真配置信息类型
  */
 
-
 export declare interface ShipBayConfigType {
   size: string;
   type: string;
@@ -17,7 +16,7 @@ export declare interface ShipBayConfigType {
   number: number;
   yardcrane_twin_flag: boolean;
   quaycrane_twin_flag: boolean;
-  cntr_class:string;
+  cntr_class: string;
 }
 
 export declare interface TodayShipPlanType {
@@ -26,7 +25,7 @@ export declare interface TodayShipPlanType {
   ship_name: string;
   ship_berth: string;
   quay_number: number;
-  ship_bay_config:ShipBayConfigType[] | [];
+  ship_bay_config: ShipBayConfigType[] | [];
 }
 
 export declare interface ContainerGroupsType {
@@ -37,22 +36,22 @@ export declare interface ContainerGroupsType {
   owner: string;
   number: number;
   yardcrane_twin_flag: boolean;
-  cntr_class:string;
+  cntr_class: string;
 }
 export declare interface NotTodayShipPlanType {
   ship_work_type: string;
   ship_type: string;
   ship_name: string;
   quay_number: number;
-  container_groups:ContainerGroupsType[] | [];
-};
+  container_groups: ContainerGroupsType[] | [];
+}
 
 export declare interface ShipPlanType {
-  "T+0":TodayShipPlanType[],
-  "T+1":NotTodayShipPlanType[],
-  "T+2":NotTodayShipPlanType[],
-  "T+3":NotTodayShipPlanType[],
-  "T-1":NotTodayShipPlanType[],
-  "T-2":NotTodayShipPlanType[],
-  "T-3":NotTodayShipPlanType[],
+  "T+0": TodayShipPlanType[];
+  "T+1": NotTodayShipPlanType[];
+  "T+2": NotTodayShipPlanType[];
+  "T+3": NotTodayShipPlanType[];
+  "T-1": NotTodayShipPlanType[];
+  "T-2": NotTodayShipPlanType[];
+  "T-3": NotTodayShipPlanType[];
 }

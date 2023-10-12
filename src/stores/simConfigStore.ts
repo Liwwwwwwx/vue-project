@@ -1,37 +1,47 @@
 /*
  * @Author: “Liwwwwwwx” hbsd_lwx@163.com
  * @Date: 2023-09-27 14:49:40
- * @LastEditors: “Liwwwwwwx” hbsd_lwx@163.com
- * @LastEditTime: 2023-10-02 18:51:00
- * @FilePath: /vue-project/src/stores/SimConfig.ts
+ * @LastEditors: Liwwwwwwx 1076843408@qq.com
+ * @LastEditTime: 2023-10-12 23:31:58
+ * @FilePath: \vue-project\src\stores\simConfigStore.ts
  * @Description: 仿真配置
  */
 import { defineStore } from "pinia";
-import { ShipPlanType, ShipBayConfigType, TodayShipPlanType, ContainerGroupsType, NotTodayShipPlanType } from "@/type/SimConfigType";
+import {
+  ShipPlanType,
+  ShipBayConfigType,
+  TodayShipPlanType,
+  ContainerGroupsType,
+  NotTodayShipPlanType,
+} from "@/type/SimConfigType";
 
 export const useSimConfigStore = defineStore("SimConfig", () => {
   const simId = new Date().valueOf().toString();
 
-  
+  const simHistoryConfigInfo = reactive({});
+
+  function setSimHistoryConfigInfo(simJsonData: any) {
+    Object.assign(simHistoryConfigInfo, simJsonData);
+  }
 
   // 船舶贝位Excel数据
-  const simShipExcelData = ref([])
+  const simShipExcelData = ref([]);
 
   /**
    * @description: 修改船舶贝位数据
    * @param {any} value
    * @return {*}
-   */  
-  function setSimShipExcelData(value:any):void {
-    simShipExcelData.value = value
+   */
+  function setSimShipExcelData(value: any): void {
+    simShipExcelData.value = value;
   }
 
   /**
    * @description: 获取excel数据
    * @return {*}
-   */  
-  function getSimShipExcelData():any {
-    return simShipExcelData
+   */
+  function getSimShipExcelData(): any {
+    return simShipExcelData;
   }
 
   // 是否显示仿真配置窗口
@@ -49,8 +59,8 @@ export const useSimConfigStore = defineStore("SimConfig", () => {
   // 开关设置
   const switches = reactive({
     light_effective: true,
-    roadgate_effective: true
-  })
+    roadgate_effective: true,
+  });
 
   /**
    * @description: 更改开关属性值
@@ -61,7 +71,6 @@ export const useSimConfigStore = defineStore("SimConfig", () => {
   function changeSwitches(key: string, value: boolean): void {
     switches[key] = value;
   }
-
 
   // 集装箱
   const blocks = reactive({
@@ -86,7 +95,7 @@ export const useSimConfigStore = defineStore("SimConfig", () => {
       "I07",
       "I08",
       "I09",
-    ]
+    ],
   });
 
   /**
@@ -109,7 +118,7 @@ export const useSimConfigStore = defineStore("SimConfig", () => {
         ship_name: "",
         quay_number: 0,
         ship_bay_config: [],
-      }
+      },
     ],
     "T+1": [
       {
@@ -118,7 +127,7 @@ export const useSimConfigStore = defineStore("SimConfig", () => {
         ship_name: "",
         quay_number: 0,
         container_groups: [],
-      }
+      },
     ],
     "T+2": [
       {
@@ -127,7 +136,7 @@ export const useSimConfigStore = defineStore("SimConfig", () => {
         ship_name: "",
         quay_number: 0,
         container_groups: [],
-      }
+      },
     ],
     "T+3": [
       {
@@ -136,7 +145,7 @@ export const useSimConfigStore = defineStore("SimConfig", () => {
         ship_name: "",
         quay_number: 0,
         container_groups: [],
-      }
+      },
     ],
     "T-1": [
       {
@@ -145,7 +154,7 @@ export const useSimConfigStore = defineStore("SimConfig", () => {
         ship_name: "",
         quay_number: 0,
         container_groups: [],
-      }
+      },
     ],
     "T-2": [
       {
@@ -154,7 +163,7 @@ export const useSimConfigStore = defineStore("SimConfig", () => {
         ship_name: "",
         quay_number: 0,
         container_groups: [],
-      }
+      },
     ],
     "T-3": [
       {
@@ -163,9 +172,9 @@ export const useSimConfigStore = defineStore("SimConfig", () => {
         ship_name: "",
         quay_number: 0,
         container_groups: [],
-      }
+      },
     ],
-  })
+  });
 
   /**
    * @description: 新增一个船舶计划
@@ -173,7 +182,7 @@ export const useSimConfigStore = defineStore("SimConfig", () => {
    * @return {*}
    */
   function addOneShipPlan(shipType: string): void {
-    let shipObj: TodayShipPlanType | NotTodayShipPlanType
+    let shipObj: TodayShipPlanType | NotTodayShipPlanType;
     if (shipType === "T+0") {
       shipObj = {
         ship_work_type: "",
@@ -182,7 +191,7 @@ export const useSimConfigStore = defineStore("SimConfig", () => {
         ship_name: "",
         quay_number: 0,
         ship_bay_config: [],
-      }
+      };
     } else {
       shipObj = {
         ship_work_type: "",
@@ -190,9 +199,9 @@ export const useSimConfigStore = defineStore("SimConfig", () => {
         ship_name: "",
         quay_number: 0,
         container_groups: [],
-      }
+      };
     }
-    shipplans[shipType].push(shipObj)
+    shipplans[shipType].push(shipObj);
   }
 
   /**
@@ -202,7 +211,7 @@ export const useSimConfigStore = defineStore("SimConfig", () => {
    * @return {*}
    */
   function deleteOneShipPlan(shipType: string, index: number): void {
-    shipplans[shipType].splice(index, 1)
+    shipplans[shipType].splice(index, 1);
   }
 
   /**
@@ -212,8 +221,12 @@ export const useSimConfigStore = defineStore("SimConfig", () => {
    * @param {ShipBayConfigType} value
    * @return {*}
    */
-  function editShipPlansShipBayConfig(shipType: string, index: number, value: ShipBayConfigType): void {
-    shipplans[shipType][index].ship_bay_config = value
+  function editShipPlansShipBayConfig(
+    shipType: string,
+    index: number,
+    value: ShipBayConfigType,
+  ): void {
+    shipplans[shipType][index].ship_bay_config = value;
   }
 
   /**
@@ -223,8 +236,12 @@ export const useSimConfigStore = defineStore("SimConfig", () => {
    * @param {ContainerGroupsType} value
    * @return {*}
    */
-  function addOneShipPlanContainerGroup(shipType: string, index: number, value: ContainerGroupsType): void {
-    shipplans[shipType][index].container_groups.push(value)
+  function addOneShipPlanContainerGroup(
+    shipType: string,
+    index: number,
+    value: ContainerGroupsType,
+  ): void {
+    shipplans[shipType][index].container_groups.push(value);
   }
 
   /**
@@ -233,8 +250,11 @@ export const useSimConfigStore = defineStore("SimConfig", () => {
    * @param {number} index
    * @return {*}
    */
-  function deleteOneShipPlanContainerGroup(shipType: string, index: number): void {
-    shipplans[shipType][index].container_groups.splice(index, 1)
+  function deleteOneShipPlanContainerGroup(
+    shipType: string,
+    index: number,
+  ): void {
+    shipplans[shipType][index].container_groups.splice(index, 1);
   }
 
   /**
@@ -245,22 +265,27 @@ export const useSimConfigStore = defineStore("SimConfig", () => {
    * @param {ContainerGroupsType} value
    * @return {*}
    */
-  function editShipPlansContainerGroup(shipType: string, shipIndex: number, groupIndex: number, value: ContainerGroupsType): void {
-    shipplans[shipType][shipIndex].container_groups[groupIndex] = value
+  function editShipPlansContainerGroup(
+    shipType: string,
+    shipIndex: number,
+    groupIndex: number,
+    value: ContainerGroupsType,
+  ): void {
+    shipplans[shipType][shipIndex].container_groups[groupIndex] = value;
   }
 
   // 外集卡参数
   const outtruck_appointments = reactive({
-    type:"model_1",
+    type: "model_1",
     model_1: {
-      DI_distribution:"triangular",
-      RE_distribution:"uniform",
-      night_decayrate:0.55,
+      DI_distribution: "triangular",
+      RE_distribution: "uniform",
+      night_decayrate: 0.55,
     },
-    mode_2:{
-      min_truck_num:15
-    }
-  })
+    mode_2: {
+      min_truck_num: 15,
+    },
+  });
   /**
    * @description: 更新外集卡参数
    * @param {string} key
@@ -272,32 +297,31 @@ export const useSimConfigStore = defineStore("SimConfig", () => {
   }
 
   const equipment_parameters = reactive({
-
-    HAV:{
-      straight_speed:15,
-      curve_speed:10,
-      max_accelerated_speed:2,
-      max_decelerated_speed:2,
+    HAV: {
+      straight_speed: 15,
+      curve_speed: 10,
+      max_accelerated_speed: 2,
+      max_decelerated_speed: 2,
     },
-    Outtruck:{
-      straight_speed:20,
-      curve_speed:10,
-      max_accelerated_speed:2,
-      max_decelerated_speed:2,
+    Outtruck: {
+      straight_speed: 20,
+      curve_speed: 10,
+      max_accelerated_speed: 2,
+      max_decelerated_speed: 2,
     },
     quaycrane: {
-      crane_speed:0.75,
-      trolley_speed:3.33,
-      empty_lifting_speed:3,
-      heavy_lifting_speed:1.25
+      crane_speed: 0.75,
+      trolley_speed: 3.33,
+      empty_lifting_speed: 3,
+      heavy_lifting_speed: 1.25,
     },
     yardcrane: {
-      crane_speed:2.5,
-      trolley_speed:2,
-      empty_lifting_speed:1.33,
-      heavy_lifting_speed:0.67
-    }
-  })
+      crane_speed: 2.5,
+      trolley_speed: 2,
+      empty_lifting_speed: 1.33,
+      heavy_lifting_speed: 0.67,
+    },
+  });
 
   /**
    * @description: 更新设备参数
@@ -305,33 +329,36 @@ export const useSimConfigStore = defineStore("SimConfig", () => {
    * @param {string} type
    * @param {number} value
    * @return {*}
-   */  
-  function changeEquipmentParameters(equipmentType:string, type:string, value:number):void {
+   */
+  function changeEquipmentParameters(
+    equipmentType: string,
+    type: string,
+    value: number,
+  ): void {
     equipment_parameters[equipmentType][type] = value;
   }
 
-
   // HAV调度模式
   const hav_assign_mode = reactive({
-    type:"work_line",
+    type: "work_line",
     work_line: {
-      vehicle_num_list:[]
+      vehicle_num_list: [],
     },
-    work_field:{
-      vehicle_num_list:[],
-      ship_name_list:[]
+    work_field: {
+      vehicle_num_list: [],
+      ship_name_list: [],
     },
-    full_field_schedule:{
-      vehicle_num:0
-    }
-  })
+    full_field_schedule: {
+      vehicle_num: 0,
+    },
+  });
 
   /**
    * @description: 更改HAV某调度模式下的值
    * @param {any} value
    * @return {*}
-   */  
-  function changeHavAssignMode(value:any):void {
+   */
+  function changeHavAssignMode(value: any): void {
     hav_assign_mode[hav_assign_mode.type] = value;
   }
 
@@ -340,7 +367,7 @@ export const useSimConfigStore = defineStore("SimConfig", () => {
    * @param {number} value
    * @return {*}
    */
-  function setHavAssignModeShipNameList(value:[]):void {
+  function setHavAssignModeShipNameList(value: []): void {
     hav_assign_mode.work_field.ship_name_list = value;
   }
   return {
@@ -368,5 +395,7 @@ export const useSimConfigStore = defineStore("SimConfig", () => {
     setHavAssignModeShipNameList,
     outtruck_appointments,
     equipment_parameters,
-  }
+    simHistoryConfigInfo,
+    setSimHistoryConfigInfo,
+  };
 });

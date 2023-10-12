@@ -1,3 +1,1 @@
-export function onMessage(data:any) {
-  
-}
+export function onMessage(data: any) {}

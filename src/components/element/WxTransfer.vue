@@ -9,39 +9,39 @@
 <template>
   <div class="transfer_container">
     <el-transfer
-    v-model="value"
-    filterable
-    :filter-method="filterMethod"
-    filter-placeholder="State Abbreviations"
-    :titles="['全部数据', '已选数据']"
-    :data="options"
-    @change="transferChange"
-  />
+      v-model="value"
+      filterable
+      :filter-method="filterMethod"
+      filter-placeholder="State Abbreviations"
+      :titles="['全部数据', '已选数据']"
+      :data="options"
+      @change="transferChange"
+    />
   </div>
 </template>
 
 <script lang="ts" setup>
-import { TransferOptionsType } from "@/type"
+import { TransferOptionsType } from "@/type";
 
 defineProps({
-  options:{
-    type:Array as PropType<TransferOptionsType[]>
-  }
-})
+  options: {
+    type: Array as PropType<TransferOptionsType[]>,
+  },
+});
 
-const emit = defineEmits(["emitTransferValue"])
+const emit = defineEmits(["emitTransferValue"]);
 
-const value = ref([])
-function transferChange(value:any) {
-  emit("emitTransferValue",value)
+const value = ref([]);
+function transferChange(value: any) {
+  emit("emitTransferValue", value);
 }
 
-const filterMethod = (query:any, item:any) => {
-  return item.initial.toLowerCase().includes(query.toLowerCase())
-}
+const filterMethod = (query: any, item: any) => {
+  return item.initial.toLowerCase().includes(query.toLowerCase());
+};
 </script>
 <style scoped lang="scss">
-.transfer_container{
+.transfer_container {
   width: 100%;
   margin-top: 2rem;
   .el-transfer {
@@ -53,20 +53,22 @@ const filterMethod = (query:any, item:any) => {
     :deep(.el-transfer-panel) {
       background-color: var(--card-bg-color);
       color: var(--text-color);
-      .el-transfer-panel__header,.el-transfer-panel__body{
+      .el-transfer-panel__header,
+      .el-transfer-panel__body {
         background-color: var(--card-bg-color);
         border: none;
       }
-      .el-checkbox,.el-checkbox__label{
+      .el-checkbox,
+      .el-checkbox__label {
         color: var(--text-color);
       }
     }
-    :deep(.el-transfer__buttons){
+    :deep(.el-transfer__buttons) {
       display: flex;
       flex-direction: column;
       padding: 0;
     }
-    :deep(.el-transfer__button){
+    :deep(.el-transfer__button) {
       margin: 0 0 1rem 0;
     }
   }

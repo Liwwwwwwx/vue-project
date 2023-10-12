@@ -44,31 +44,31 @@ declare interface importContainerType {
 }
 
 declare interface divStyle {
-  width: string,
-  height: string,
-  left: string,
-  top: string,
-  zIndex: number,
+  width: string;
+  height: string;
+  left: string;
+  top: string;
+  zIndex: number;
 }
 
 declare interface DateType {
-  year: number,
-  month: number,
-  day: number,
-  hour: number,
-  minute: number,
-  second: number,
+  year: number;
+  month: number;
+  day: number;
+  hour: number;
+  minute: number;
+  second: number;
 }
 
 declare interface OptionsType {
-  label: string,
-  value: string
+  label: string;
+  value: string;
 }
 
 declare interface TransferOptionsType {
-  key:number,
-  label: string,
-  initial: string
+  key: number;
+  label: string;
+  initial: string;
 }
 
 declare interface KeysValuesType {
@@ -84,5 +84,5 @@ export {
   DateType,
   OptionsType,
   TransferOptionsType,
-  KeysValuesType
+  KeysValuesType,
 };

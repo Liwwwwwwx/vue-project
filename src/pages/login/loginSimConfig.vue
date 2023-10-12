@@ -9,6 +9,7 @@
 <template>
   <div class="sim_config_form">
     <sim-read-excel v-show="simConfigStep == 0"></sim-read-excel>
+    <sim-history-config-info></sim-history-config-info>
     <sim-switches-config v-show="simConfigStep == 1"></sim-switches-config>
     <el-steps :active="simConfigStep" finish-status="success" align-center>
       <el-step
@@ -21,21 +22,26 @@
 </template>
 
 <script lang="ts" setup>
-import simReadExcel from "@/components/simConfig/simReadExcel.vue";
-import simSwitchesConfig from "@/components/simConfig/simSwitchesConfig.vue";
+import simReadExcel from "@/components/loginSimConfig/simReadExcel.vue";
+import simSwitchesConfig from "@/components/loginSimConfig/simSwitchesConfig.vue";
+import simHistoryConfigInfo from "@/components/loginsimConfig/simHistoryConfigInfo.vue";
 import { ElMessageBox } from "element-plus";
 
 // 仿真配置步骤条
 const simConfigStep = ref(0);
 
 // 仿真配置信息提示
-const simConfigStepInfo = ["仿真基本信息", "集装箱和场景设置信息", "船舶计划信息"];
+const simConfigStepInfo = [
+  "仿真基本信息",
+  "集装箱和场景设置信息",
+  "船舶计划信息",
+];
 
 const changeSimConfigStep = (index: number) => {
   if (index !== simConfigStep.value) {
     ElMessageBox({
       title: "温馨提示",
-      message: "确定要切换到第" + (index + 1) + "步吗(切换会保存此页面信息)？",
+      message: "确定要切换到第" + (index + 1) + "步吗？",
       type: "warning",
       showCancelButton: true,
       confirmButtonText: "确定",

@@ -1,48 +1,11 @@
 /*
  * @Author: “Liwwwwwwx” hbsd_lwx@163.com
  * @Date: 2023-09-21 14:51:14
- * @LastEditors: “Liwwwwwwx” hbsd_lwx@163.com
- * @LastEditTime: 2023-10-03 11:45:41
- * @FilePath: /vue-project/src/assets/element.scss
+ * @LastEditors: Liwwwwwwx 1076843408@qq.com
+ * @LastEditTime: 2023-10-12 23:03:11
+ * @FilePath: \vue-project\src\assets\element.scss
  * @Description: element组件样式
  */
-
-/* 多选框样式 */
-
-.el-checkbox__inner {
-  width: 32px !important;
-  height: 32px !important;
-  background-color: var(--checkbox-background-color) !important;
-  border: 2px solid var(--checkbox-border-color) !important;
-}
-
-.el-checkbox__inner:hover {
-  border: none;
-}
-
-.el-checkbox__label {
-  color: var(--text-color);
-  font-size: 30px;
-  padding-left: 40px;
-}
-
-.el-checkbox__inner::after {
-  width: 14.5px !important;
-  height: 21px !important;
-  border: 2px solid var(--el-checkbox-checked-icon-color) !important;
-  border-left: 0 !important;
-  border-top: 0 !important;
-  left: 6px !important;
-  top: 0 !important;
-}
-
-.is-checked {
-  .el-checkbox__inner {
-    background-color: var(--bg-normal-color) !important;
-  }
-}
-
-
 
 /* el-table */
 // 整体背景
