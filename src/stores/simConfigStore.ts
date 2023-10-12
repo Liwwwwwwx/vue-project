@@ -11,6 +11,9 @@ import { ShipPlanType, ShipBayConfigType, TodayShipPlanType, ContainerGroupsType
 
 export const useSimConfigStore = defineStore("SimConfig", () => {
   const simId = new Date().valueOf().toString();
+
+  
+
   // 船舶贝位Excel数据
   const simShipExcelData = ref([])
 

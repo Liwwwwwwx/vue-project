@@ -1,9 +1,9 @@
 <!--
  * @Author: “Liwwwwwwx” hbsd_lwx@163.com
  * @Date: 2023-09-21 18:01:41
- * @LastEditors: “Liwwwwwwx” hbsd_lwx@163.com
- * @LastEditTime: 2023-10-03 11:34:15
- * @FilePath: /vue-project/src/components/element/WxInput.vue
+ * @LastEditors: Liwwwwwwx 1076843408@qq.com
+ * @LastEditTime: 2023-10-10 23:05:41
+ * @FilePath: \vue-project\src\components\element\wxInput.vue
  * @Description: 带标题的输入框
 -->
 <template>
@@ -54,15 +54,17 @@ function inputValueChange(value: string) {
   }
   :deep(.el-input__wrapper) {
     border-radius: 0.15rem;
+    background-color: var(--input-bg-color);
+    box-shadow: none !important;
     padding: 1px 10px;
     .el-input__inner {
       color: var(--text-color);
       height: 35px;
+      color: var(--text-color);
     }
   }
   :deep(.el-input__wrapper.is-focus) {
     box-shadow: none;
   }
-  
 }
 </style>

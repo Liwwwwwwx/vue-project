@@ -31,7 +31,7 @@
 </template>
 
 <script setup lang="ts">
-import { useSimConfigStore } from "@/stores/SimConfig";
+import { useSimConfigStore } from "@/stores/simConfigStore";
 import { storeToRefs } from "pinia";
 import { readExcel } from "@/tools"
 

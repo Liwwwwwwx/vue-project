@@ -1,35 +1,22 @@
 <!--
  * @Author: “Liwwwwwwx” 1076843408@qq.com
  * @Date: 2023-09-15 10:41:18
- * @LastEditors: “Liwwwwwwx” hbsd_lwx@163.com
- * @LastEditTime: 2023-10-08 17:58:09
- * @FilePath: /vue-project/src/views/index.vue
+ * @LastEditors: Liwwwwwwx 1076843408@qq.com
+ * @LastEditTime: 2023-10-10 23:02:17
+ * @FilePath: \vue-project\src\views\index.vue
  * @Description: 布局
 -->
 
 <template>
   <div class="base_container">
     <div class="container">
-      <sim-read-excel></sim-read-excel>
-      <wx-transfer
-        :options="options"
-        @emit-transfer-value="getTransgetValue"
-      ></wx-transfer>
-      <wx-check-box :options="testOptions" direction="row"></wx-check-box>
-      <wx-input title="标题" width="20"></wx-input>
-      <div-corner></div-corner>
-      <wasm-test></wasm-test>
+      <login-sim-config></login-sim-config>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import SimReadExcel from "@/components/SimConfig/SimReadExcel.vue";
-import WxCheckBox from "@/components/element/WxCheckBox.vue";
-import WxTransfer from "@/components/element/WxTransfer.vue";
-import WxInput from "@/components/element/WxInput.vue";
-import divCorner from "@/components/normal/divCorner.vue";
-import wasmTest from "@/components/wasm/wasmTest.vue";
+import loginSimConfig from "@/pages/login/loginSimConfig.vue";
 import { generatorDefaultOptions, getTransferOptions } from "@/tools";
 import { TransferOptionsType } from "@/type";
 
@@ -54,7 +41,7 @@ function getTransgetValue(value: any) {
 
 <style scoped lang="scss">
 .base_container {
-  background: black;
+  background: url(../assets/img/login_bg.png);
   background-size: cover;
   height: 100%;
   width: 100%;
