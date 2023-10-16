@@ -1,8 +1,8 @@
 /*
  * @Author: “Liwwwwwwx” hbsd_lwx@163.com
  * @Date: 2023-09-15 17:54:58
- * @LastEditors: Liwwwwwwx 1076843408@qq.com
- * @LastEditTime: 2023-10-12 23:29:53
+ * @LastEditors: Liwwwwwwx hbsd_lwx@163.com
+ * @LastEditTime: 2023-10-16 22:06:27
  * @FilePath: \vue-project\src\tools\index.ts
  * @Description: 通用方法
  */
@@ -46,6 +46,12 @@ export function readExcel(files: any, callback: Function): any {
   };
 }
 
+/**
+ * @description: 读取JSON文件
+ * @param {any} files
+ * @param {Function} callback
+ * @return {*}
+ */
 export function readJson(files: any, callback: Function): void {
   const reader = new FileReader();
   reader.readAsBinaryString(files[0]);
@@ -83,18 +89,18 @@ export function drag(
     if (left < 0) {
       left = 0;
     } else if (left > document.documentElement.clientWidth - dom.offsetWidth) {
-      left = document.documentElement.clientWidth - dom.offsetWidth;
+      left = document.documentElement.clientWidth - dom.offsetWidth -1;
     }
 
     // 上下边界
     if (top < 0) {
       top = 0;
     } else if (top > document.documentElement.clientHeight - dom.offsetHeight) {
-      top = document.documentElement.clientHeight - dom.offsetHeight;
+      top = document.documentElement.clientHeight - dom.offsetHeight-1;
     }
     // 设置dom的left、top
-    dom.style.left = left + "px";
-    dom.style.top = top + "px";
+    style.left = left + "px";
+    style.top = top + "px";
   };
   document.onmouseup = () => {
     document.onmousemove = null;
@@ -144,8 +150,8 @@ export function flex(
   let disX = event.clientX - dom.offsetLeft;
   let disY = event.clientY - dom.offsetTop;
 
-  let minWidth: number = 0;
-  let minHeight: number = 0;
+  let minWidth: number = 200;
+  let minHeight: number = 200;
 
   let resizable: boolean = false;
   let direc: string = "";
@@ -169,17 +175,18 @@ export function flex(
     if (left < 0) {
       left = 0;
     } else if (left > document.documentElement.clientWidth - dom.offsetWidth) {
-      left = document.documentElement.clientWidth - dom.offsetWidth;
+      left = document.documentElement.clientWidth - dom.offsetWidth -1;
     }
 
     // 上下边界
     if (top < 0) {
       top = 0;
     } else if (top > document.documentElement.clientHeight - dom.offsetHeight) {
-      top = document.documentElement.clientHeight - dom.offsetHeight;
+      top = document.documentElement.clientHeight - dom.offsetHeight-1;
     }
 
     if (resizable) {
+      console.log(111);
       // 东
       if (direc.indexOf("e") !== -1) {
         if (direc === "ne") {
@@ -215,6 +222,7 @@ export function flex(
       if (direc.indexOf("w") !== -1) {
         if (direc === "sw") {
           style.left = left + "px";
+          console.log(style.left );
         } else if (direc === "w") {
           style.left = left + "px";
         }

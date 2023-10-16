@@ -3,7 +3,7 @@
  * @Author: wenxuan.li1
  * @Date: 2023-08-29 14:15:30
  * @FilePath: \vue-project\src\components\loginSimConfig\simHistoryConfigInfo.vue
- * @LastEditTime: 2023-10-12 23:36:30
+ * @LastEditTime: 2023-10-12 23:40:25
  * @LastEditors: Liwwwwwwx 1076843408@qq.com
 -->
 <template>
@@ -19,9 +19,7 @@
             action="https://localhost"
             :on-change="handleUpload"
           >
-            <el-button slot="trigger" type="primary"
-              >导入仿真配置信息</el-button
-            >
+            <el-button slot="trigger" type="primary">导入仿真配置信息</el-button>
           </el-upload>
         </div>
       </template>
@@ -44,7 +42,6 @@ const { simHistoryConfigInfo } = storeToRefs(useSimConfigStore());
  */
 const handleUpload: UploadProps["onChange"] = (file): void => {
   const files = { 0: file.raw };
-  console.log(files);
   readJson(files, setSimHistoryConfigInfo);
 };
 </script>

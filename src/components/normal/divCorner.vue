@@ -1,9 +1,9 @@
 <!--
  * @Author: “Liwwwwwwx” hbsd_lwx@163.com
  * @Date: 2023-09-45 19:22:06
- * @LastEditors: “Liwwwwwwx” hbsd_lwx@163.com
- * @LastEditTime: 2023-09-45 19:32:46
- * @FilePath: /vue-project/src/components/normal/divCorner.vue
+ * @LastEditors: Liwwwwwwx hbsd_lwx@163.com
+ * @LastEditTime: 2023-10-16 21:17:25
+ * @FilePath: \vue-project\src\components\normal\divCorner.vue
  * @Description: 
 -->
 <template>

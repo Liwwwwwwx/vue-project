@@ -2,7 +2,7 @@
  * @Author: “Liwwwwwwx” 1076843408@qq.com
  * @Date: 2023-09-15 10:41:18
  * @LastEditors: Liwwwwwwx 1076843408@qq.com
- * @LastEditTime: 2023-10-10 23:02:17
+ * @LastEditTime: 2023-10-16 20:49:14
  * @FilePath: \vue-project\src\views\index.vue
  * @Description: 布局
 -->
@@ -10,13 +10,14 @@
 <template>
   <div class="base_container">
     <div class="container">
-      <login-sim-config></login-sim-config>
+      <echart-page></echart-page>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import loginSimConfig from "@/pages/login/loginSimConfig.vue";
+import loginSimConfig from "@/pages/login/loginSimConfigPage.vue";
+import echartPage from "@/pages/login/echartPage.vue";
 import { generatorDefaultOptions, getTransferOptions } from "@/tools";
 import { TransferOptionsType } from "@/type";
 
