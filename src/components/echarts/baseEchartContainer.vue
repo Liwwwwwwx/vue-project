@@ -1,56 +1,58 @@
 <!--
  * @Author: Liwwwwwwx 1076843408@qq.com
  * @Date: 2023-10-14 12:50:08
- * @LastEditors: Liwwwwwwx hbsd_lwx@163.com
- * @LastEditTime: 2023-10-16 21:58:11
- * @FilePath: \vue-project\src\components\echarts\echartContainer.vue
+ * @LastEditors: “Liwwwwwwx” hbsd_lwx@163.com
+ * @LastEditTime: 2023-10-25 11:00:17
+ * @FilePath: /vue-project/src/components/echarts/baseEchartContainer.vue
  * @Description: 图表组件
 -->
 <template>
   <div :id="echartContainerId" class="echart_container">
     <div
       class="echart_header"
-      @mousedown="drag($event, echartContainerId, echartsContainerStyle, true)"
+      @mousedown="drag($event, echartContainerId, echartStyle, true)"
     >
-      {{ echartsContentData.title }}
+      {{ echartConfig.title }}
       <div class="title_bg"></div>
-      <div class="echart_subtitle">- {{ echartsContentData.subTitle }}</div>
+      <div class="echart_subtitle">- {{ echartConfig.subTitle }}</div>
       <div class="echart_operate">
         <Delete class="echart_set"></Delete>
         <Setting class="echart_set"></Setting>
       </div>
     </div>
-    <div class="echart_content"></div>
+    <div :id="myEchartId" ref="myEcahrtDom" class="echart_content"></div>
     <div class="echart_text"></div>
     <div-corner
       class="corner"
-      @mousedown.stop="flex($event, echartContainerId, echartsContainerStyle)"
+      @mousedown.stop="flex($event, echartContainerId, echartStyle)"
     ></div-corner>
   </div>
 </template>
 
 <script setup lang="ts">
 import divCorner from "../normal/divCorner.vue";
+import * as echarts from "echarts";
 import type { PropType } from "vue";
 import { drag, flex } from "@/tools";
 import { divStyle } from "@/type";
 import { Delete, Setting } from "@element-plus/icons-vue";
+import { commentOptions, getCommentEchartConfig } from "@/tools/echartConfig";
 
 declare interface echartContentDataType {
   title: string;
   subTitle: string;
   type: string;
   keys: string[];
-  datas: string[];
+  datas: number[];
   show: boolean;
 }
 
 const props = defineProps({
-  echartsContentData: {
+  echartConfig: {
     type: Object as PropType<echartContentDataType>,
     required: true,
   },
-  echartsContainerStyle: {
+  echartStyle: {
     type: Object as PropType<divStyle>,
     required: true,
   },
@@ -58,6 +60,36 @@ const props = defineProps({
     type: String,
     required: true,
   },
+  myEchartId: {
+    type: String,
+    required: true,
+  },
+  index: {
+    type: Number,
+    required: true,
+  },
+});
+
+// echartDom
+const myEcahrtDom = ref();
+const echartConfig: any = reactive({});
+watch(
+  () => props.echartConfig,
+  (newValue, oldValue) => {
+    Object.assign(echartConfig, newValue);
+  },
+  {
+    immediate: true,
+    deep: true,
+  }
+);
+onMounted(() => {
+  const myChart = echarts.init(myEcahrtDom.value);
+  setInterval(() => {
+    const option: any = getCommentEchartConfig(echartConfig);
+    myChart.setOption(option, false);
+  }, 1000);
+  myChart.setOption(commentOptions, false);
 });
 </script>
 
@@ -123,9 +155,9 @@ const props = defineProps({
   }
   .echart_text {
     width: 100%;
-    height: v-bind("props.echartsContainerStyle.height");
+    height: v-bind("props.echartStyle.height");
     text-align: center;
-    line-height: v-bind("props.echartsContainerStyle.height");
+    line-height: v-bind("props.echartStyle.height");
     font-size: 8rem;
     background: var(--echart-text-color);
     -webkit-background-clip: text;
@@ -133,11 +165,11 @@ const props = defineProps({
     font-family: Alibaba PuHuiTi;
   }
 }
-[id^="echart_"] {
-  left: v-bind("props.echartsContainerStyle.left");
-  top: v-bind("props.echartsContainerStyle.top");
-  width: v-bind("props.echartsContainerStyle.width");
-  height: v-bind("props.echartsContainerStyle.height");
-  z-index: v-bind("props.echartsContainerStyle.zIndex");
+[id^="echart_container"] {
+  left: v-bind("props.echartStyle.left");
+  top: v-bind("props.echartStyle.top");
+  width: v-bind("props.echartStyle.width");
+  height: v-bind("props.echartStyle.height");
+  z-index: v-bind("props.echartStyle.zIndex");
 }
 </style>

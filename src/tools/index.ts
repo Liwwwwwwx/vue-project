@@ -1,9 +1,9 @@
 /*
  * @Author: “Liwwwwwwx” hbsd_lwx@163.com
  * @Date: 2023-09-15 17:54:58
- * @LastEditors: Liwwwwwwx hbsd_lwx@163.com
- * @LastEditTime: 2023-10-16 22:06:27
- * @FilePath: \vue-project\src\tools\index.ts
+ * @LastEditors: “Liwwwwwwx” hbsd_lwx@163.com
+ * @LastEditTime: 2023-10-25 11:10:16
+ * @FilePath: /vue-project/src/tools/index.ts
  * @Description: 通用方法
  */
 
@@ -261,7 +261,6 @@ export function getScreenSize(): number {
   } else if (screenWidth <= 1920) {
     rem = 12;
   }
-  document.documentElement.style.fontSize = rem / ratio + "px";
   return rem / ratio;
 }
 

@@ -1,20 +1,36 @@
+<!--
+ * @Author: “Liwwwwwwx” hbsd_lwx@163.com
+ * @Date: 2023-10-25 10:25:38
+ * @LastEditors: “Liwwwwwwx” hbsd_lwx@163.com
+ * @FilePath: /vue-project/src/pages/login/echartPage.vue
+ * @Description: 图表页面
+-->
 <template>
   <div class="echart_pages_container">
-    <echart-container
-      v-for="(item, index) in echartContentDatas"
-      :echarts-content-data="item"
+    <base-echart-container
+      v-for="(item, index) in echartDatas"
+      :echart-config="item.config"
       :echart-container-id="baseContainerId + index"
-      :echarts-container-style="echartStyleDatas[index]"
-    ></echart-container>
+      :echart-style="item.style"
+      :my-echart-id="myEchartId + index"
+      :index="index"
+    >
+    </base-echart-container>
+    <div v-for="item in echartDatas">{{ item.config.datas }}</div>
   </div>
 </template>
 
 <script setup lang="ts">
-import echartContainer from "@/components/echarts/echartContainer.vue";
+import baseEchartContainer from "@/components/echarts/baseEchartContainer.vue";
 import { useEchartsDatasStore } from "@/stores/echartDatasStore";
 
-const { echartContentDatas, echartStyleDatas } = storeToRefs(useEchartsDatasStore());
+const { echartDatas } = storeToRefs(useEchartsDatasStore());
+const { setEchartDatas } = useEchartsDatasStore();
 const baseContainerId = "echart_container_id_";
+const myEchartId = "my_chart_id_";
+setInterval(() => {
+  setEchartDatas();
+}, 1000);
 </script>
 
 <style scoped lang="scss">
