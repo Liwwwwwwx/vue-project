@@ -2,12 +2,11 @@
  * @Author: Liwwwwwwx hbsd_lwx@163.com
  * @Date: 2023-10-14 12:52:51
  * @LastEditors: “Liwwwwwwx” hbsd_lwx@163.com
- * @LastEditTime: 2023-10-25 14:53:40
+ * @LastEditTime: 2023-10-25 23:10:02
  * @FilePath: /vue-project/src/stores/echartDatasStore.ts
  * @Description: echart图表数据
  */
 import { defineStore } from "pinia";
-
 
 export const useEchartsDatasStore = defineStore("echartDatas", () => {
 
@@ -23,9 +22,8 @@ export const useEchartsDatasStore = defineStore("echartDatas", () => {
     }
     return arr
   }
-
   // 图表数据
-  const echartDatas = ref([{
+  const echartDatas = ref([[{
     config: {
       title: "测试数据",
       subTitle: "副标题",
@@ -57,25 +55,49 @@ export const useEchartsDatasStore = defineStore("echartDatas", () => {
       width: "26rem",
       zIndex: 9
     }
-  }])
-
-  
-  const setEchartDatas = () => {
-    echartDatas.value.forEach((item: any) => {
+  }]])
+  /**
+   * @Description: 赋值图标的Y轴数据为随机数据
+   * @return {*}
+   */  
+  const setEchartDatas = ():void => {
+    echartDatas.value[0].forEach((item: any) => {
       item.config.datas = generatorRandomNumber(9)
     })
   }
 
+  // 所有的echart初始化dom
   const myEcahrts = ref<any>([]);
-
-  const setMyEchartDom = (index:number,value:any) => {
+  /**
+   * @Description: 赋值给myEcharts
+   * @param {number} index
+   * @param {any} value
+   * @return {*}
+   */  
+  const setMyEchartDom = (index:number,value:any):void => {
     myEcahrts.value[index] = value
   }
 
+  // 图表是否可拖拽
+  const isDragChart = ref<boolean>(false);
+  const setIsDragChart = (value:boolean):void => {
+    isDragChart.value = value
+  }
+
+  const oldEchartStyles = ref<any[]>([]);
+  const setOldEchartStyles = (pageIndex:number) => {
+    echartDatas.value[pageIndex].forEach((item:any,index:number) => {
+      oldEchartStyles.value[index] = item.style
+    });
+    console.log(oldEchartStyles.value);
+  }
   return {
     echartDatas,
     setEchartDatas,
     myEcahrts,
-    setMyEchartDom
+    setMyEchartDom,
+    isDragChart,
+    setIsDragChart,
+    setOldEchartStyles
   };
 });

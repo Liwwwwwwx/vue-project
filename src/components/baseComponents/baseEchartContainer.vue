@@ -10,7 +10,7 @@
   <div :id="echartContainerId" class="echart_container">
     <div
       class="echart_header"
-      @mousedown="drag($event, echartContainerId, echartStyle, true)"
+      @mousedown="drag($event, echartContainerId, echartContainerStyle, isDragChart)"
     >
       <div class="echart_title">
         {{ echartConfig.title }}
@@ -18,31 +18,31 @@
         <div class="echart_subtitle">- {{ echartConfig.subTitle }}</div>
       </div>
       <div class="echart_operate">
-        <Delete class="echart_set"></Delete>
+        <Delete v-show="isDragChart" class="echart_set"></Delete>
         <Setting class="echart_set"></Setting>
       </div>
     </div>
     <div :id="myEchartId" ref="myEcahrtDom" class="echart_content"></div>
     <div class="echart_text"></div>
-    <div-corner
+    <base-div-corner
       class="corner"
       @mousedown.stop="flex($event, echartContainerId, echartStyle, myEcahrts[index])"
-    ></div-corner>
+    ></base-div-corner>
   </div>
 </template>
 
 <script setup lang="ts">
-import divCorner from "../normal/divCorner.vue";
+import baseDivCorner from "./baseDivCorner.vue";
 import * as echarts from "echarts";
 import { useEchartsDatasStore } from "@/stores/echartDatasStore";
-import type { PropType } from "vue";
-import { drag, flex } from "@/tools";
+import { drag, flex, getIdStyle } from "@/tools";
 import { divStyle } from "@/type";
 import { Delete, Setting } from "@element-plus/icons-vue";
 import { commentOptions, getCommentEchartConfig } from "@/tools/echartConfig";
+import type { PropType } from "vue";
 
 const { setMyEchartDom } = useEchartsDatasStore();
-const { myEcahrts } = storeToRefs(useEchartsDatasStore());
+const { myEcahrts, isDragChart } = storeToRefs(useEchartsDatasStore());
 
 declare interface echartContentDataType {
   title: string;
@@ -98,6 +98,11 @@ onMounted(() => {
   }, 1000);
   myChart.setOption(commentOptions, false);
 });
+
+// echart样式
+const echartContainerStyle = getIdStyle(props.echartContainerId)
+  ? reactive(getIdStyle(props.echartContainerId))
+  : reactive(props.echartStyle);
 </script>
 
 <style scoped lang="scss">
@@ -143,7 +148,7 @@ onMounted(() => {
       }
     }
     .echart_operate {
-      margin: 0 0.2rem 0 auto;
+      margin: 0 0.5rem 0 auto;
       display: flex;
       align-items: flex-end;
       .echart_set {
@@ -155,7 +160,7 @@ onMounted(() => {
       }
       .echart_set:hover {
         cursor: pointer;
-        color: #ff5c5c;
+        color: var(--text-error-color);
         transition: all 0.5s ease-in-out;
       }
     }
@@ -169,9 +174,9 @@ onMounted(() => {
   }
   .echart_text {
     width: 100%;
-    height: v-bind("props.echartStyle.height");
+    height: v-bind("echartContainerStyle.height");
     text-align: center;
-    line-height: v-bind("props.echartStyle.height");
+    line-height: v-bind("echartContainerStyle.height");
     font-size: 8rem;
     background: var(--echart-text-color);
     -webkit-background-clip: text;
@@ -180,10 +185,10 @@ onMounted(() => {
   }
 }
 [id^="echart_container"] {
-  left: v-bind("props.echartStyle.left");
-  top: v-bind("props.echartStyle.top");
-  width: v-bind("props.echartStyle.width");
-  height: v-bind("props.echartStyle.height");
-  z-index: v-bind("props.echartStyle.zIndex");
+  left: v-bind("echartContainerStyle.left");
+  top: v-bind("echartContainerStyle.top");
+  width: v-bind("echartContainerStyle.width");
+  height: v-bind("echartContainerStyle.height");
+  z-index: v-bind("echartContainerStyle.zIndex");
 }
 </style>

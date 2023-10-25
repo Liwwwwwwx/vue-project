@@ -3,7 +3,7 @@
  * @Author: wenxuan.li1
  * @Date: 2023-08-15 09:23:49
  * @FilePath: /vue-project/src/router/index.ts
- * @LastEditTime: 2023-09-21 18:15:07
+ * @LastEditTime: 2023-10-25 21:21:40
  * @LastEditors: “Liwwwwwwx” hbsd_lwx@163.com
  */
 import {
@@ -19,7 +19,7 @@ const router = createRouter({
     {
       path: "/",
       name: "home",
-      component: () => import("../views/index.vue"),
+      component: () => import("../views/home/realModelView.vue"),
     },
     // beforeEnter: (to: any, from: any, next: any) => {
     //   if (from.name !== "loading") {

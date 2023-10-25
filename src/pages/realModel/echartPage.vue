@@ -8,7 +8,7 @@
 <template>
   <div class="echart_pages_container">
     <base-echart-container
-      v-for="(item, index) in echartDatas"
+      v-for="(item, index) in echartDatas[0]"
       :echart-config="item.config"
       :echart-container-id="baseContainerId + index"
       :echart-style="item.style"
@@ -16,15 +16,16 @@
       :index="index"
     >
     </base-echart-container>
-    <div v-for="item in echartDatas">{{ item.config.datas }}</div>
+    <echart-setting v-show="isDragChart"></echart-setting>
   </div>
 </template>
 
 <script setup lang="ts">
-import baseEchartContainer from "@/components/echarts/baseEchartContainer.vue";
+import baseEchartContainer from "@/components/baseComponents/baseEchartContainer.vue";
+import echartSetting from "@/components/echarts/echartSetting.vue";
 import { useEchartsDatasStore } from "@/stores/echartDatasStore";
 
-const { echartDatas } = storeToRefs(useEchartsDatasStore());
+const { echartDatas, isDragChart } = storeToRefs(useEchartsDatasStore());
 const { setEchartDatas } = useEchartsDatasStore();
 const baseContainerId = "echart_container_id_";
 const myEchartId = "my_chart_id_";
@@ -37,10 +38,5 @@ setInterval(() => {
 .echart_pages_container {
   width: 100%;
   height: 100%;
-  position: absolute;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
 }
 </style>

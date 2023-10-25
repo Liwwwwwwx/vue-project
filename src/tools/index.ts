@@ -2,7 +2,7 @@
  * @Author: “Liwwwwwwx” hbsd_lwx@163.com
  * @Date: 2023-09-15 17:54:58
  * @LastEditors: “Liwwwwwwx” hbsd_lwx@163.com
- * @LastEditTime: 2023-10-25 17:47:22
+ * @LastEditTime: 2023-10-25 23:01:11
  * @FilePath: /vue-project/src/tools/index.ts
  * @Description: 通用方法
  */
@@ -64,15 +64,19 @@ export function readJson(files: any, callback: Function): void {
 
 // 可点击窗口的z-index
 let allowedWindowZIndex = {}
-function setAllowWindowZIndex(key:string, value:number) {
+function setAllowWindowZIndex(key: string, value: number) {
   allowedWindowZIndex[key] = value;
 }
 
-function getMaxWindowZIndex():number {
+/**
+ * @Description: 获取可点击窗口的最大zIndex
+ * @return {number}
+ */
+function getMaxWindowZIndex(): number {
   let maxNumber = -Infinity
   let maxKey = ""
   for (const key in allowedWindowZIndex) {
-    if(allowedWindowZIndex[key] > maxNumber) {
+    if (allowedWindowZIndex[key] > maxNumber) {
       maxNumber = allowedWindowZIndex[key]
       maxKey = key
     }
@@ -96,44 +100,47 @@ export function drag(
   style: divStyle,
   status: boolean = true,
 ): void {
-  const dom: HTMLElement = document.getElementById(id) as HTMLElement;
-  let disX = event.clientX - dom.offsetLeft;
-  let disY = event.clientY - dom.offsetTop;
+  if (status) {
+    const dom: HTMLElement = document.getElementById(id) as HTMLElement;
+    let disX = event.clientX - dom.offsetLeft;
+    let disY = event.clientY - dom.offsetTop;
 
-  setAllowWindowZIndex(id,style.zIndex)
-  style.zIndex = getMaxWindowZIndex()
+    setAllowWindowZIndex(id, style.zIndex)
+    style.zIndex = getMaxWindowZIndex()
 
-  document.onmousemove = (event: MouseEvent) => {
-    let left = event.clientX - disX;
-    let top = event.clientY - disY;
+    document.onmousemove = (event: MouseEvent) => {
+      let left = event.clientX - disX;
+      let top = event.clientY - disY;
 
-    // 左右边界
-    if (left < 0) {
-      left = 0;
-    } else if (left > document.documentElement.clientWidth - dom.offsetWidth) {
-      left = document.documentElement.clientWidth - dom.offsetWidth -1;
-    }
+      // 左右边界
+      if (left < 0) {
+        left = 0;
+      } else if (left > document.documentElement.clientWidth - dom.offsetWidth) {
+        left = document.documentElement.clientWidth - dom.offsetWidth - 1;
+      }
 
-    // 上下边界
-    if (top < 0) {
-      top = 0;
-    } else if (top > document.documentElement.clientHeight - dom.offsetHeight) {
-      top = document.documentElement.clientHeight - dom.offsetHeight-1;
-    }
-    // 设置dom的left、top
-    style.left = left + "px";
-    style.top = top + "px";
-  };
-  document.onmouseup = () => {
-    document.onmousemove = null;
-    document.onmouseup = null;
-  };
-  document.ondragstart = (event: DragEvent) => {
-    event.preventDefault();
-  };
-  document.ondragend = (event: DragEvent) => {
-    event.preventDefault();
-  };
+      // 上下边界
+      if (top < 0) {
+        top = 0;
+      } else if (top > document.documentElement.clientHeight - dom.offsetHeight) {
+        top = document.documentElement.clientHeight - dom.offsetHeight - 1;
+      }
+      // 设置dom的left、top
+      style.left = left + "px";
+      style.top = top + "px";
+    };
+    document.onmouseup = () => {
+      document.onmousemove = null;
+      document.onmouseup = null;
+      setIdStyle(id,style)
+    };
+    document.ondragstart = (event: DragEvent) => {
+      event.preventDefault();
+    };
+    document.ondragend = (event: DragEvent) => {
+      event.preventDefault();
+    };
+  }
 }
 
 /**
@@ -168,7 +175,7 @@ export function flex(
   echart: any = null,
 ): void {
   const dom = document.getElementById(id) as HTMLElement;
-  setAllowWindowZIndex(id,style.zIndex)
+  setAllowWindowZIndex(id, style.zIndex)
   style.zIndex = getMaxWindowZIndex()
   let clientX: number, clientY: number;
   let disX = event.clientX - dom.offsetLeft;
@@ -199,18 +206,17 @@ export function flex(
     if (left < 0) {
       left = 0;
     } else if (left > document.documentElement.clientWidth - dom.offsetWidth) {
-      left = document.documentElement.clientWidth - dom.offsetWidth -1;
+      left = document.documentElement.clientWidth - dom.offsetWidth - 1;
     }
 
     // 上下边界
     if (top < 0) {
       top = 0;
     } else if (top > document.documentElement.clientHeight - dom.offsetHeight) {
-      top = document.documentElement.clientHeight - dom.offsetHeight-1;
+      top = document.documentElement.clientHeight - dom.offsetHeight - 1;
     }
 
     if (resizable) {
-      console.log(111);
       // 东
       if (direc.indexOf("e") !== -1) {
         if (direc === "ne") {
@@ -246,7 +252,7 @@ export function flex(
       if (direc.indexOf("w") !== -1) {
         if (direc === "sw") {
           style.left = left + "px";
-          console.log(style.left );
+          console.log(style.left);
         } else if (direc === "w") {
           style.left = left + "px";
         }
@@ -261,6 +267,7 @@ export function flex(
   document.onmouseup = () => {
     document.onmousemove = null;
     document.onmouseup = null;
+    setIdStyle(id,style)
   };
   document.ondragstart = (event: DragEvent) => {
     event.preventDefault();
@@ -428,7 +435,7 @@ export function getDateInfo(): DateType {
 export function getTodayOfYear(date: Date): number {
   const today = Math.floor(
     (date.getTime() - new Date(date.getFullYear(), 0, 0).getTime()) /
-      (1000 * 3600 * 24),
+    (1000 * 3600 * 24),
   );
   const year = date.getFullYear();
   if (year % 100 !== 0 && year % 400 !== 0 && year % 4 === 0) {
