@@ -2,7 +2,7 @@
  * @Author: “Liwwwwwwx” hbsd_lwx@163.com
  * @Date: 2023-09-15 17:54:58
  * @LastEditors: “Liwwwwwwx” hbsd_lwx@163.com
- * @LastEditTime: 2023-10-25 11:10:16
+ * @LastEditTime: 2023-10-25 17:47:22
  * @FilePath: /vue-project/src/tools/index.ts
  * @Description: 通用方法
  */
@@ -62,6 +62,26 @@ export function readJson(files: any, callback: Function): void {
   };
 }
 
+// 可点击窗口的z-index
+let allowedWindowZIndex = {}
+function setAllowWindowZIndex(key:string, value:number) {
+  allowedWindowZIndex[key] = value;
+}
+
+function getMaxWindowZIndex():number {
+  let maxNumber = -Infinity
+  let maxKey = ""
+  for (const key in allowedWindowZIndex) {
+    if(allowedWindowZIndex[key] > maxNumber) {
+      maxNumber = allowedWindowZIndex[key]
+      maxKey = key
+    }
+  }
+  maxNumber++
+  allowedWindowZIndex[maxKey] = maxNumber++
+  return maxNumber || Infinity
+}
+
 /**
  * @description: 鼠标点击拖拽函数
  * @param {MouseEvent} event
@@ -79,7 +99,9 @@ export function drag(
   const dom: HTMLElement = document.getElementById(id) as HTMLElement;
   let disX = event.clientX - dom.offsetLeft;
   let disY = event.clientY - dom.offsetTop;
-  style.zIndex = 9;
+
+  setAllowWindowZIndex(id,style.zIndex)
+  style.zIndex = getMaxWindowZIndex()
 
   document.onmousemove = (event: MouseEvent) => {
     let left = event.clientX - disX;
@@ -146,6 +168,8 @@ export function flex(
   echart: any = null,
 ): void {
   const dom = document.getElementById(id) as HTMLElement;
+  setAllowWindowZIndex(id,style.zIndex)
+  style.zIndex = getMaxWindowZIndex()
   let clientX: number, clientY: number;
   let disX = event.clientX - dom.offsetLeft;
   let disY = event.clientY - dom.offsetTop;

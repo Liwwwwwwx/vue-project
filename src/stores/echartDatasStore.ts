@@ -2,7 +2,7 @@
  * @Author: Liwwwwwwx hbsd_lwx@163.com
  * @Date: 2023-10-14 12:52:51
  * @LastEditors: “Liwwwwwwx” hbsd_lwx@163.com
- * @LastEditTime: 2023-10-25 13:55:04
+ * @LastEditTime: 2023-10-25 14:53:40
  * @FilePath: /vue-project/src/stores/echartDatasStore.ts
  * @Description: echart图表数据
  */
@@ -66,9 +66,16 @@ export const useEchartsDatasStore = defineStore("echartDatas", () => {
     })
   }
 
+  const myEcahrts = ref<any>([]);
+
+  const setMyEchartDom = (index:number,value:any) => {
+    myEcahrts.value[index] = value
+  }
 
   return {
     echartDatas,
     setEchartDatas,
+    myEcahrts,
+    setMyEchartDom
   };
 });
