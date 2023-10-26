@@ -1,4 +1,12 @@
 /*
+ * @Author: Liwwwwwwx hbsd_lwx@163.com
+ * @Date: 2023-10-04 23:38:17
+ * @LastEditors: Liwwwwwwx hbsd_lwx@163.com
+ * @LastEditTime: 2023-10-18 20:55:52
+ * @FilePath: \vue-project\src\tools\index.ts
+ * @Description: 
+ */
+/*
  * @Author: “Liwwwwwwx” hbsd_lwx@163.com
  * @Date: 2023-09-15 17:54:58
  * @LastEditors: Liwwwwwwx hbsd_lwx@163.com
