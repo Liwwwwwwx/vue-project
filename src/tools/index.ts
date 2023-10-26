@@ -1,9 +1,9 @@
 /*
  * @Author: “Liwwwwwwx” hbsd_lwx@163.com
  * @Date: 2023-09-15 17:54:58
- * @LastEditors: “Liwwwwwwx” hbsd_lwx@163.com
- * @LastEditTime: 2023-10-25 23:01:11
- * @FilePath: /vue-project/src/tools/index.ts
+ * @LastEditors: Liwwwwwwx hbsd_lwx@163.com
+ * @LastEditTime: 2023-10-26 21:45:28
+ * @FilePath: \vue-project\src\tools\index.ts
  * @Description: 通用方法
  */
 

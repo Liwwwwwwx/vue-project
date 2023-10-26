@@ -1,8 +1,8 @@
 <!--
  * @Author: “Liwwwwwwx” 1076843408@qq.com
  * @Date: 2023-09-15 10:41:18
- * @LastEditors: Liwwwwwwx 1076843408@qq.com
- * @LastEditTime: 2023-10-16 20:49:14
+ * @LastEditors: Liwwwwwwx hbsd_lwx@163.com
+ * @LastEditTime: 2023-10-26 21:10:12
  * @FilePath: \vue-project\src\views\index.vue
  * @Description: 布局
 -->
@@ -16,7 +16,6 @@
 </template>
 
 <script setup lang="ts">
-import loginSimConfig from "@/pages/login/loginSimConfigPage.vue";
 import echartPage from "@/pages/login/echartPage.vue";
 import { generatorDefaultOptions, getTransferOptions } from "@/tools";
 import { TransferOptionsType } from "@/type";

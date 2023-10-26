@@ -8,16 +8,30 @@
 <template>
   <div class="echart_setting_container">
     <div class="echart_setting">新建图表</div>
-    <div class="echart_setting">保存布局</div>
+    <div class="echart_setting" @click="handleSave">保存布局</div>
     <div class="echart_setting echart_quit" @click="handleQuit">退出编辑</div>
   </div>
 </template>
 
 <script setup lang="ts">
 import { useEchartsDatasStore } from "@/stores/echartDatasStore";
-const { setIsDragChart } = useEchartsDatasStore();
+const { setIsDragChart, saveEchartStyle, notSaveEchartStyle } = useEchartsDatasStore();
 
-const handleQuit = () => {
+/**
+ * @description:保存布局
+ * @return {*}
+ */
+const handleSave = (): void => {
+  saveEchartStyle(0);
+  setIsDragChart(false);
+};
+
+/**
+ * @description: 退出编辑
+ * @return {*}
+ */
+const handleQuit = (): void => {
+  notSaveEchartStyle(0);
   setIsDragChart(false);
 };
 </script>

@@ -1,8 +1,8 @@
 <!--
  * @Author: “Liwwwwwwx” hbsd_lwx@163.com
  * @Date: 2023-10-25 10:25:38
- * @LastEditors: “Liwwwwwwx” hbsd_lwx@163.com
- * @FilePath: /vue-project/src/pages/login/echartPage.vue
+ * @LastEditors: Liwwwwwwx hbsd_lwx@163.com
+ * @FilePath: \vue-project\src\pages\realModel\realModelEchartPage.vue
  * @Description: 图表页面
 -->
 <template>
@@ -10,7 +10,7 @@
     <base-echart-container
       v-for="(item, index) in echartDatas[0]"
       :echart-config="item.config"
-      :echart-container-id="baseContainerId + index"
+      :echart-container-id="item.id"
       :echart-style="item.style"
       :my-echart-id="myEchartId + index"
       :index="index"
@@ -27,7 +27,6 @@ import { useEchartsDatasStore } from "@/stores/echartDatasStore";
 
 const { echartDatas, isDragChart } = storeToRefs(useEchartsDatasStore());
 const { setEchartDatas } = useEchartsDatasStore();
-const baseContainerId = "echart_container_id_";
 const myEchartId = "my_chart_id_";
 setInterval(() => {
   setEchartDatas();

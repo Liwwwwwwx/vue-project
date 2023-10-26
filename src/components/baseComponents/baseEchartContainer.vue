@@ -100,9 +100,13 @@ onMounted(() => {
 });
 
 // echart样式
-const echartContainerStyle = getIdStyle(props.echartContainerId)
-  ? reactive(getIdStyle(props.echartContainerId))
-  : reactive(props.echartStyle);
+const echartContainerStyle = reactive(props.echartStyle);
+watch(
+  () => props.echartStyle,
+  (newValue, oldValue) => {
+    Object.assign(echartContainerStyle, newValue);
+  }
+);
 </script>
 
 <style scoped lang="scss">

@@ -16,7 +16,7 @@
 
 <script setup lang="ts">
 import homeHeader from "@/pages/homePages/homeHeader.vue";
-import echartPage from "@/pages/realModel/echartPage.vue";
+import echartPage from "@/pages/realModel/realModelEchartPage.vue";
 </script>
 
 <style scoped lang="scss">
