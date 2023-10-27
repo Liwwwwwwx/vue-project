@@ -28,9 +28,9 @@ import { useEchartsDatasStore } from "@/stores/echartDatasStore";
 const { echartDatas, isDragChart } = storeToRefs(useEchartsDatasStore());
 const { setEchartDatas } = useEchartsDatasStore();
 const myEchartId = "my_chart_id_";
-setInterval(() => {
-  setEchartDatas();
-}, 1000);
+// setInterval(() => {
+//   setEchartDatas();
+// }, 1000);
 </script>
 
 <style scoped lang="scss">

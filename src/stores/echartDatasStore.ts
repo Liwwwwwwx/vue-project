@@ -1,9 +1,9 @@
 /*
  * @Author: Liwwwwwwx hbsd_lwx@163.com
  * @Date: 2023-10-14 12:52:51
- * @LastEditors: Liwwwwwwx hbsd_lwx@163.com
- * @LastEditTime: 2023-10-26 21:51:32
- * @FilePath: \vue-project\src\stores\echartDatasStore.ts
+ * @LastEditors: “Liwwwwwwx” hbsd_lwx@163.com
+ * @LastEditTime: 2023-10-27 15:03:51
+ * @FilePath: /vue-project/src/stores/echartDatasStore.ts
  * @Description: echart图表数据
  */
 import { defineStore } from "pinia";
@@ -22,6 +22,10 @@ export const useEchartsDatasStore = defineStore("echartDatas", () => {
       arr.push(Math.floor(Math.random() * (15 - 10) + 10))
     }
     return arr
+  }
+
+  const getEchartContainerID = (pageIndex:number,chartIndex:number):string => {
+    return `echart_container_${pageIndex}_${chartIndex}`
   }
   // 图表数据
   const echartDatas = ref([[{
@@ -119,12 +123,12 @@ export const useEchartsDatasStore = defineStore("echartDatas", () => {
   return {
     echartDatas,
     setEchartDatas,
+    saveEchartStyle,
     myEcahrts,
     setMyEchartDom,
     isDragChart,
     setIsDragChart,
     setOldEchartStyles,
-    saveEchartStyle,
     notSaveEchartStyle
   };
 });

@@ -7,10 +7,10 @@
  * @Description: 图表组件
 -->
 <template>
-  <div :id="echartContainerId" class="echart_container">
+  <div :id="echartContainerId" class="echart_container" v-show="echartConfig.show">
     <div
       class="echart_header"
-      @mousedown="drag($event, echartContainerId, echartContainerStyle, isDragChart)"
+      @mousedown="drag($event, echartContainerId, echartStyle, isDragChart)"
     >
       <div class="echart_title">
         {{ echartConfig.title }}
@@ -178,9 +178,9 @@ watch(
   }
   .echart_text {
     width: 100%;
-    height: v-bind("echartContainerStyle.height");
+    height: v-bind("props.echartStyle.height");
     text-align: center;
-    line-height: v-bind("echartContainerStyle.height");
+    line-height: v-bind("props.echartStyle.height");
     font-size: 8rem;
     background: var(--echart-text-color);
     -webkit-background-clip: text;
@@ -189,10 +189,10 @@ watch(
   }
 }
 [id^="echart_container"] {
-  left: v-bind("echartContainerStyle.left");
-  top: v-bind("echartContainerStyle.top");
-  width: v-bind("echartContainerStyle.width");
-  height: v-bind("echartContainerStyle.height");
-  z-index: v-bind("echartContainerStyle.zIndex");
+  left: v-bind("props.echartStyle.left");
+  top: v-bind("props.echartStyle.top");
+  width: v-bind("props.echartStyle.width");
+  height: v-bind("props.echartStyle.height");
+  z-index: v-bind("props.echartStyle.zIndex");
 }
 </style>
